@@ -19,8 +19,11 @@ function App() {
       body: JSON.stringify(payload)
     })
     response=await response.json()
-    //console.log(response.candidates[0].content.parts[0].text);
-    setResult(response.candidates[0].content.parts[0].text)
+    let dataString=response.candidates[0].content.parts[0].text
+    dataString=dataString.split("* ")
+    dataString=dataString.map((item)=> item.trim())
+    console.log(dataString);
+    setResult(dataString)
     
   };
 
@@ -30,7 +33,7 @@ function App() {
       <div className="col-span-1 bg-amber-300">LEFT SIDE for Navigation</div>
       <div className="col-span-4 bg-amber-50">
         <div className="container h-110">
-        {result}
+        {result} 
         </div>
         <div
           className="bg-zinc-800 w-1/2 p-1 pr-5 text-white m-auto
